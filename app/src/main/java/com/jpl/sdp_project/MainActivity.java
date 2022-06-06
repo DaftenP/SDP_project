@@ -1,26 +1,52 @@
 package com.jpl.sdp_project;
 
 import android.os.Bundle;
-import android.widget.TextView;
+import android.util.Log;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.jpl.sdp_project.functions.OpenAPI;
+import com.jpl.sdp_project.retrofit.Body;
+import com.jpl.sdp_project.retrofit.Result;
+import com.jpl.sdp_project.retrofit.RetrofitClient;
+import com.jpl.sdp_project.retrofit.RetrofitInterface;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    String edit1 = "타이레놀";
+    private RetrofitClient retrofitClient;
+    private RetrofitInterface retrofitInterface;
 
-    //ArrayList<Medicine> arrayList = new ArrayList<Medicine>();
+    String key = "FbibLpOcunqY9iK%2B0S4zn5XYmhAwfQ5yzZL74ykXbEq%2BQrw9w%2Fu0T0y9tu9I5cAUXWq4%2FpiRbRELSr01pbZWcA%3D%3D";
+
+    String edit1 = "타이레놀";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //arrayList = ;
-        TextView text1 = (TextView) findViewById(R.id.txt1);
-        text1.setText(OpenAPI.getXML(edit1).get(0).ingr_name);
-    }
+        EditText text1 = (EditText) findViewById(R.id.txt1);
 
+        retrofitClient = RetrofitClient.getInstance();
+        retrofitInterface = RetrofitClient.getRetrofitInterface();
+        retrofitInterface.getData(key, 0, 100, edit1, null, "json").enqueue(new Callback<Result>() {
+            @Override
+            public void onResponse(Call<Result> call, Response<Result> response) {
+                Result result = response.body();
+                Body data = result.getBody();
+                Log.d("retrofit", "Data fetch success");
+                text1.setText(data.getItems().get(0).getEntpName());
+            }
+
+            @Override
+            public void onFailure(Call<Result> call, Throwable t) {
+                Log.d("retrofit", t.getMessage());
+            }
+        });
+
+    }
 }
