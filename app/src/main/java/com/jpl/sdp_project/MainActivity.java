@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private RetrofitClient retrofitClient;
     private RetrofitInterface retrofitInterface;
 
-    String key = "FbibLpOcunqY9iK%2B0S4zn5XYmhAwfQ5yzZL74ykXbEq%2BQrw9w%2Fu0T0y9tu9I5cAUXWq4%2FpiRbRELSr01pbZWcA%3D%3D";
+
 
     String edit1 = "타이레놀";
 
@@ -29,17 +29,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EditText text1 = (EditText) findViewById(R.id.txt1);
+        EditText text1 = (EditText) findViewById(R.id.Edt1);
 
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
-        retrofitInterface.getData(key, 0, 100, edit1, null, "json").enqueue(new Callback<Result>() {
+        retrofitInterface.getData(1, 100, edit1, null, "json").enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
                 Result result = response.body();
                 Body data = result.getBody();
                 Log.d("retrofit", "Data fetch success");
-                text1.setText(data.getItems().get(0).getEntpName());
+                text1.setText(data.getItems().get(0).getItemName());
             }
 
             @Override
