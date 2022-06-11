@@ -3,7 +3,10 @@ package com.jpl.sdp_project.retrofit;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Result {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Result extends ArrayList<Item> {
 
     @SerializedName("header")
     @Expose
@@ -11,7 +14,6 @@ public class Result {
     @SerializedName("body")
     @Expose
     private Body body;
-
     public Header getHeader() {
         return header;
     }
