@@ -1,11 +1,12 @@
 package com.jpl.sdp_project.retrofit;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Body {
+
     @SerializedName("pageNo")
     @Expose
     private Integer pageNo;
@@ -17,7 +18,7 @@ public class Body {
     private Integer numOfRows;
     @SerializedName("items")
     @Expose
-    private ArrayList<Item> items = null;
+    private List<Item> items = null;
 
     public Integer getPageNo() {
         return pageNo;
@@ -43,11 +44,11 @@ public class Body {
         this.numOfRows = numOfRows;
     }
 
-    public List<Item>  getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
-    public void setItems(ArrayList<Item> items) {
+    public void setItems(List<Item> items) {
         this.items = items;
     }
 

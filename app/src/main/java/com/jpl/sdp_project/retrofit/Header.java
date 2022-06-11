@@ -3,7 +3,6 @@ package com.jpl.sdp_project.retrofit;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-
 public class Header {
 
     @SerializedName("resultCode")

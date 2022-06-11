@@ -33,21 +33,6 @@
             android:layout_height="wrap_content"
             android:background="@drawable/coding_glassxml" />
 
-        <!--        <ScrollView-->
-<!--            android:id="@+id/Sc1"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content">-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="vertical" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/Tex1"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="match_parent"/>-->
-<!--        </ScrollView>-->
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
