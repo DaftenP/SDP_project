@@ -1,5 +1,6 @@
 package com.jpl.sdp_project;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Context context = this;
         EditText text1 = (EditText) findViewById(R.id.Edt1);
         ImageButton btn1 = (ImageButton) findViewById(R.id.Btn1);
 
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                         Result result = response.body();
                         Body data = result.getBody();
                         Log.d("retrofit", "Data fetch success");
-                        recyclerAdapter = new RecyclerAdapter(data.getItems());
+                        recyclerAdapter = new RecyclerAdapter(context, data.getItems());
                         recyclerView.setAdapter(recyclerAdapter);
 
                     }

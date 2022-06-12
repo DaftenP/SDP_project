@@ -1,10 +1,9 @@
 package com.jpl.sdp_project;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,20 +30,24 @@ public class NewActivity extends MainActivity{
         super.onCreate(savedinstanceState);
         setContentView(R.layout.new_activity);
 
+        Context context = this;
+
         recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
+        Intent intent = getIntent();
+        String txt1 = intent.getStringExtra("TEXT");
 
-        retrofitInterface.getData(1, 100, null, null, "json").enqueue(new Callback<Result>() {
+        retrofitInterface.getData(1, 100, null, txt1, "json").enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
                 Result result = response.body();
                 Body data = result.getBody();
                 Log.d("retrofit", "Data fetch success");
-                recyclerAdapter = new RecyclerAdapter(data.getItems());
+                recyclerAdapter = new RecyclerAdapter(context,data.getItems());
                 recyclerView.setAdapter(recyclerAdapter);
 
             }
