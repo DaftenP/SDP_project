@@ -25,27 +25,24 @@ public class MainActivity extends AppCompatActivity {
     private RetrofitInterface retrofitInterface;
     private RecyclerView.Adapter recyclerAdapter;
     private RecyclerView recyclerView;
-
+    String edit1 = "타이레놀";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         EditText text1 = (EditText) findViewById(R.id.Edt1);
         ImageButton btn1 = (ImageButton) findViewById(R.id.Btn1);
 
         recyclerView = findViewById(R.id.recyclerView);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
 
         btn1.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 String edit1 = text1.getText().toString();
@@ -67,8 +64,5 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-
-
     }
-
 }
