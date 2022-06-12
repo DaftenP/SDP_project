@@ -25,16 +25,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="search" />
+            android:hint="search" />
 
         <ImageButton
             android:id="@+id/Btn1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/coding_glassxml" />
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/search2" />
+
+        <ImageButton
+            android:id="@+id/Btn2"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/camera1" />
 
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout01"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
 
+        <ImageView
+            android:id="@+id/img01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/Btn3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="스캔"/>
+
+
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
@@ -42,4 +67,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 </LinearLayout>
