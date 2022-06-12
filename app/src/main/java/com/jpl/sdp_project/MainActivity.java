@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                         recyclerAdapter = new RecyclerAdapter(context, data.getItems());
                         recyclerView.setAdapter(recyclerAdapter);
 
+
                     }
 
                     @Override
