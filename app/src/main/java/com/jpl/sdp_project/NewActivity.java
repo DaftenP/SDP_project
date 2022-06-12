@@ -21,29 +21,36 @@ import retrofit2.Response;
 
 public class NewActivity extends MainActivity{
 
+    //필드 정의 부분
     private RetrofitClient retrofitClient;
     private RetrofitInterface retrofitInterface;
     private RecyclerView.Adapter recyclerAdapter;
     private RecyclerView recyclerView;
 
+    //액티비티 생성자
     protected  void onCreate(@Nullable Bundle savedinstanceState){
         super.onCreate(savedinstanceState);
         setContentView(R.layout.new_activity);
 
-        Context context = this;
+        //지역변수
+        Context context = this; //리사이클러뷰에 전달할 Context 객체
+        Intent intent = getIntent();
+        String txt1 = intent.getStringExtra("TEXT");
 
+        //리사이클러뷰 객체
         recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+
+        //retrofit 객체
         recyclerView.setLayoutManager(layoutManager);
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
-        Intent intent = getIntent();
-        String txt1 = intent.getStringExtra("TEXT");
 
-        retrofitInterface.getData(1, 100, null, txt1, "json").enqueue(new Callback<Result>() {
+
+        retrofitInterface.getData(1, 100, null, txt1, "json").enqueue(new Callback<Result>() {  //json request
             @Override
-            public void onResponse(Call<Result> call, Response<Result> response) {
+            public void onResponse(Call<Result> call, Response<Result> response) {  //request success
                 Result result = response.body();
                 Body data = result.getBody();
                 Log.d("retrofit", "Data fetch success");
@@ -53,7 +60,7 @@ public class NewActivity extends MainActivity{
             }
 
             @Override
-            public void onFailure(Call<Result> call, Throwable t) {
+            public void onFailure(Call<Result> call, Throwable t) { //request failure
                 Log.d("retrofit", t.getMessage());
             }
         });

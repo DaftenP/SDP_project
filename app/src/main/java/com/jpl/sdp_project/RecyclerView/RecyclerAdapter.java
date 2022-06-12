@@ -17,13 +17,13 @@ import com.jpl.sdp_project.retrofit.Item;
 
 import java.util.List;
 
-//Adapter : listview를 만들어서 recyclerview와 연결해줌 , Holder에서 만들어 준 listView를 inflater를 이용해 객체화 시키고 실제 데이터를 담아줌
-//즉, Holder가 listview 그릇을 만들면 Adapter가 실제 데이터를 담은 listView를 만들어주는 것.
 public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>{
+
+    //필드 정의 부분
     private Context mContext;
     private List<Item> itemAdapter;
 
-
+    //생성자
     public RecyclerAdapter(Context context, List<Item> itemAdapter) {
         this.mContext = context;
         this.itemAdapter = itemAdapter;
@@ -41,21 +41,28 @@ public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.MyVie
     }
     @Override
     public int getItemCount() {
-        return itemAdapter.size();
+        try {   //예외처리 부분
+            return itemAdapter.size();  //파싱돼서 넘어온 데이터의 크기가 0일때 list.size()가 예외발생!
+        } catch (Exception e){
+            return 0;                   //예외 발생시 0을 리턴하여 리사이클러뷰에 아이템을 생성하지 않음.
+        }
+
     }
 
-    //Holder: 레이아웃과 연결해서 listView를 만들어주는 역할 (단순 연결)
+    //뷰홀더
      public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView ingrName,itemName,entpName;
 
          public MyViewHolder(@NonNull View itemView) {
              super(itemView);
 
+             //지역변수
              ingrName = itemView.findViewById(R.id.ingrName);
              itemName = itemView.findViewById(R.id.itemName);
              entpName = itemView.findViewById(R.id.entpName);
+
              itemView.setClickable(true);
-             itemView.setOnClickListener(new View.OnClickListener() {
+             itemView.setOnClickListener(new View.OnClickListener() {   //리사이클러뷰 내의 아이템 OnClickListener
                  @Override
                  public void onClick(View v) {
                      int pos = getAdapterPosition();

@@ -19,20 +19,20 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/ingrName"
+                    android:id="@+id/itemName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:layout_margin="10dp"
                     android:textAlignment="center"
-                    android:text="약품이름"/>
+                    android:text="제품명"/>
 
                 <TextView
-                    android:id="@+id/itemName"
+                    android:id="@+id/ingrName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="제조"
+                    android:text="성분명"
                     android:textAlignment="center"
                     android:textSize="12sp" />
 
@@ -43,7 +43,7 @@
                     android:layout_marginBottom="8dp"
                     android:textSize="12sp"
                     android:textAlignment="center"
-                    android:text="성분이름"/>
+                    android:text="제조업체"/>
 
             </LinearLayout>
 
